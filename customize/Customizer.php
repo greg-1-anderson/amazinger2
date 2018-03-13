@@ -26,7 +26,7 @@ class Customizer
     {
         $this->working_dir = dirname(__DIR__);
         $this->project_name = basename($this->working_dir);
-        $composer_path = $working_dir . '/composer.json';
+        $composer_path = $this->working_dir . '/composer.json';
 
         $composer_data = $this->readComposerJson($composer_path);
 
@@ -65,9 +65,9 @@ class Customizer
             '/example-project/' => $this->project_name,
             '/ExampleProject/' => $this->project_camelcase_name,
             '/example-org/' => $this->project_org,
-            $original_project_name_and_org[1] => $this->project_name,
-            $original_project_name_and_org[0] => $this->project_org,
-            $this->camelCase($original_project_name_and_org[1]) => $this->project_camelcase_name,
+            '/' . $original_project_name_and_org[1] . '/' => $this->project_name,
+            '/' . $original_project_name_and_org[0] . '/' => $this->project_org,
+            '/' . $this->camelCase($original_project_name_and_org[1]) . '/' => $this->project_camelcase_name,
             "/{$composer_data['authors'][0]['name']}/" => $this->author_name,
             "/{$composer_data['authors'][0]['email']}/" => $this->author_email,
             '/Copyright (c) [0-9]*/' => "Copyright (c) " . $this->copyright_year,
